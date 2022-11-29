@@ -37,9 +37,11 @@ dependencies {
     // Production Dependencies
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     runtimeOnly("com.h2database:h2:2.1.214")

@@ -8,3 +8,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     open-in-view: false
+
+logging:
+  level:
+    com.severett.bootimagedemo.aspect: DEBUG
