@@ -9,7 +9,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-open class BookService(private val authorRepo: AuthorRepo, private val bookRepo: BookRepo) {
+class BookService(private val authorRepo: AuthorRepo, private val bookRepo: BookRepo) {
     fun getBook(id: Int): BookDTO {
         return bookRepo.findByIdOrNull(id)!!.let { BookDTO(title = it.title, authorId = it.author.id) }
     }

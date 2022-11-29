@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.21"
+    kotlin("plugin.allopen") version "1.7.21"
     kotlin("plugin.jpa") version "1.7.21"
     kotlin("plugin.serialization") version "1.7.21"
     id("org.springframework.boot") version "3.0.0"
@@ -17,6 +18,7 @@ repositories {
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-jpa")
+apply(plugin = "kotlin-spring")
 apply(plugin = "kotlinx-serialization")
 apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")

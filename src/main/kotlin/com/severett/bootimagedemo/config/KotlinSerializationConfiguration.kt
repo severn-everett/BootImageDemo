@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.KotlinSerializationJsonHttpMessageConverter
 
 @Configuration
-open class KotlinSerializationConfiguration {
+class KotlinSerializationConfiguration {
 
     @Bean
-    open fun configBean(): KotlinSerializationJsonHttpMessageConverter {
+    fun configBean(): KotlinSerializationJsonHttpMessageConverter {
         val jsonConfig = Json { ignoreUnknownKeys = true }
         return KotlinSerializationJsonHttpMessageConverter(jsonConfig)
     }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-open class AuthorService(private val authorRepo: AuthorRepo) {
+class AuthorService(private val authorRepo: AuthorRepo) {
 
     fun getAuthor(id: Int): AuthorDTO {
         return authorRepo.findByIdOrNull(id)!!.let { AuthorDTO(firstName = it.firstName, lastName = it.lastName) }
