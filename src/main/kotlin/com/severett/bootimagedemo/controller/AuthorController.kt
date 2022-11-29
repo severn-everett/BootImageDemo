@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController
 class AuthorController(private val authorService: AuthorService) {
     @GetMapping("/{id}")
     @ResponseBody
-    fun getAuthor(@PathVariable id: Int) = authorService.getAuthor(id)
+    suspend fun getAuthor(@PathVariable id: Int) = authorService.getAuthor(id)
 
     @PostMapping("")
-    fun saveAuthor(@RequestBody authorDTO: AuthorDTO) {
+    suspend fun saveAuthor(@RequestBody authorDTO: AuthorDTO) {
         authorService.saveAuthor(authorDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteAuthor(@PathVariable id: Int) {
+    suspend fun deleteAuthor(@PathVariable id: Int) {
         authorService.deleteAuthor(id)
     }
 }

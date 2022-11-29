@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController
 class BookController(private val bookService: BookService) {
     @GetMapping("/{id}")
     @ResponseBody
-    fun getBook(@PathVariable id: Int) = bookService.getBook(id)
+    suspend fun getBook(@PathVariable id: Int) = bookService.getBook(id)
 
     @PostMapping("")
-    fun saveBook(@RequestBody bookDTO: BookDTO) {
+    suspend fun saveBook(@RequestBody bookDTO: BookDTO) {
         bookService.saveBook(bookDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteBook(@PathVariable id: Int) {
+    suspend fun deleteBook(@PathVariable id: Int) {
         bookService.deleteBook(id)
     }
 }
