@@ -34,18 +34,21 @@ tasks {
 
 dependencies {
     val kotlinCoroutinesVersion: String by project
-    // Production Dependencies
-    implementation(kotlin("reflect"))
+    //// Production Dependencies
+    // Implementation
     implementation(kotlin("stdlib-jdk8"))
     implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    // Runtime
+    runtimeOnly(kotlin("reflect"))
     runtimeOnly("com.h2database:h2:2.1.214")
-    // Testing Dependencies
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinCoroutinesVersion")
+    //// Testing Dependencies
+    // Implementation
     testImplementation(kotlin("test"))
 }

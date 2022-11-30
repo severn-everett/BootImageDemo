@@ -15,6 +15,7 @@ class NonSecurityConfiguration {
         return http.authorizeExchange { exchanges ->
             exchanges.anyExchange().permitAll()
         }
+            .csrf().disable()
             .httpBasic(Customizer.withDefaults())
             .build()
     }
