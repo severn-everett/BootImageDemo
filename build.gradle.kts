@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
     kotlin("jvm") version "1.7.21"
@@ -7,6 +8,7 @@ plugins {
     kotlin("plugin.serialization") version "1.7.21"
     id("org.springframework.boot") version "3.0.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("org.graalvm.buildtools.native") version "0.9.18"
 }
 
 group = "com.severett"
@@ -24,6 +26,9 @@ apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")
 
 tasks {
+    named<BootBuildImage>("bootBuildImage") {
+        imageName.set("boot_image_demo")
+    }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
     }
