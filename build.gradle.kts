@@ -1,12 +1,13 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_19
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
-    kotlin("jvm") version "1.7.21"
-    kotlin("plugin.allopen") version "1.7.21"
-    kotlin("plugin.jpa") version "1.7.21"
-    kotlin("plugin.serialization") version "1.7.21"
-    id("org.springframework.boot") version "3.0.0"
+    kotlin("jvm") version "1.8.0"
+    kotlin("plugin.allopen") version "1.8.0"
+    kotlin("plugin.jpa") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.0"
+    id("org.springframework.boot") version "3.0.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.graalvm.buildtools.native") version "0.9.18"
 }
@@ -30,7 +31,9 @@ tasks {
         imageName.set("boot_image_demo")
     }
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+        compilerOptions {
+            jvmTarget.set(JVM_19)
+        }
     }
     test {
         useJUnitPlatform()
@@ -41,7 +44,7 @@ dependencies {
     val kotlinCoroutinesVersion: String by project
     //// Production Dependencies
     // Implementation
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
     implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
