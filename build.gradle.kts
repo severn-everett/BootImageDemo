@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.serialization") version "1.8.0"
     id("org.springframework.boot") version "3.0.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("org.graalvm.buildtools.native") version "0.9.19"
 }
 
 group = "com.severett"
