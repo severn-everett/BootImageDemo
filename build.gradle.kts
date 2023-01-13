@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_19
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
     kotlin("jvm") version "1.8.0"
@@ -26,6 +27,9 @@ apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")
 
 tasks {
+    named<BootBuildImage>("bootBuildImage") {
+        imageName.set("boot_image_demo")
+    }
     withType<KotlinCompile> {
         compilerOptions {
             jvmTarget.set(JVM_19)
