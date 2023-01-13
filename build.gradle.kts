@@ -1,5 +1,6 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_19
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     kotlin("jvm") version "1.8.0"
@@ -26,9 +27,20 @@ apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")
 
 tasks {
+    val jvmVersion = "17"
+    val kotlinJvmTarget = "JVM_$jvmVersion"
+    withType<JavaCompile> {
+        sourceCompatibility = jvmVersion
+        targetCompatibility = jvmVersion
+    }
     withType<KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(JVM_19)
+            jvmTarget.set(JvmTarget.valueOf(kotlinJvmTarget))
+        }
+    }
+    withType<BootJar> {
+        manifest {
+            attributes["Build-Jdk-Spec"] = jvmVersion
         }
     }
     test {
