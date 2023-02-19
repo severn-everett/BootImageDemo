@@ -3,12 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    kotlin("plugin.allopen") version "1.8.0"
-    kotlin("plugin.jpa") version "1.8.0"
-    kotlin("plugin.serialization") version "1.8.0"
+    val kotlinVersion = "1.8.10"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
     id("org.springframework.boot") version "3.0.1"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("io.spring.dependency-management") version "1.1.0"
     id("org.graalvm.buildtools.native") version "0.9.20"
 }
 
