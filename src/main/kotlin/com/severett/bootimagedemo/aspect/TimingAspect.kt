@@ -13,13 +13,8 @@ private val logger = KotlinLogging.logger { }
 @ImportRuntimeHints(AspectRuntimeHints::class)
 @Component
 class TimingAspect {
-    @Around(value= "execution(* com.severett.bootimagedemo.controller.AuthorController.*(..))")
-    fun aroundAuthorController(pjp: ProceedingJoinPoint) = execTimingAdvice(pjp)
-
-    @Around(value= "execution(* com.severett.bootimagedemo.controller.BookController.*(..))")
-    fun aroundBookController(pjp: ProceedingJoinPoint) = execTimingAdvice(pjp)
-
-    private fun execTimingAdvice(pjp: ProceedingJoinPoint): Any {
+    @Around(value= "execution(* com.severett.bootimagedemo.controller.*Controller.*(..))")
+    fun aroundControllers(pjp: ProceedingJoinPoint): Any {
         val startTime = getNanoTime()
         try {
             return pjp.proceed()
