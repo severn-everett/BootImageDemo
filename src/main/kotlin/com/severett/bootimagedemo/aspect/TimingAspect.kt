@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component
 
 private val logger = KotlinLogging.logger { }
 
+@Suppress("unused")
 @Aspect
 @Component
 class TimingAspect {

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 class BookService(private val authorRepo: AuthorRepo, private val bookRepo: BookRepo) {
     suspend fun getBook(id: Int): BookDTO {
         return withContext(Dispatchers.IO) {
-            bookRepo.findByIdOrNull(id)?.let { BookDTO(title = it.title, authorId = it.author.id) }
+            bookRepo.findByIdOrNull(id)?.let { BookDTO(title = it.title, price = it.price, authorId = it.author.id) }
                 ?: throw EntityNotFoundException("No book found with id #$id")
         }
     }
@@ -26,6 +26,7 @@ class BookService(private val authorRepo: AuthorRepo, private val bookRepo: Book
             bookRepo.save(
                 Book(
                     title = bookDTO.title,
+                    price = bookDTO.price,
                     author = authorRepo.getReferenceById(bookDTO.authorId)
                 )
             )
