@@ -1,5 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_19
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     val kotlinVersion = "1.9.0"
@@ -9,6 +11,7 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
+    id("org.graalvm.buildtools.native") version "0.9.23"
 }
 
 group = "com.severett"
@@ -26,9 +29,23 @@ apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")
 
 tasks {
+    named<BootBuildImage>("bootBuildImage") {
+        imageName.set("boot_image_demo")
+    }
+    val jvmVersion = "17"
+    val kotlinJvmTarget = "JVM_$jvmVersion"
+    withType<JavaCompile> {
+        sourceCompatibility = jvmVersion
+        targetCompatibility = jvmVersion
+    }
     withType<KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(JVM_19)
+            jvmTarget.set(JvmTarget.valueOf(kotlinJvmTarget))
+        }
+    }
+    withType<BootJar> {
+        manifest {
+            attributes["Build-Jdk-Spec"] = jvmVersion
         }
     }
     test {

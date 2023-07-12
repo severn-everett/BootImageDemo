@@ -4,12 +4,13 @@ import mu.KotlinLogging
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
+import org.springframework.context.annotation.ImportRuntimeHints
 import org.springframework.stereotype.Component
 
 private val logger = KotlinLogging.logger { }
 
-@Suppress("unused")
 @Aspect
+@ImportRuntimeHints(AspectRuntimeHints::class)
 @Component
 class TimingAspect {
     @Around(value= "execution(* com.severett.bootimagedemo.controller.*Controller.*(..))")
